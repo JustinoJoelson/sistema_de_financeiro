@@ -47,13 +47,14 @@ def view_extrato(request):
     categorias = Categoria.objects.all()
     conta_get = request.GET.get('conta')
     categoria_get = request.GET.get('categoria')
+    
 
     valores = Valores.objects.filter(data__month=datetime.now().month)
 
+     
     if conta_get:
         valores = valores.filter(conta_id=conta_get)
     if categoria_get:
         valores = valores.filter(categoria_id=categoria_get)
-
-    #TODO: botao para zerar filtros     
+      
     return render(request, 'view_extrato.html', {'valores': valores, 'contas': contas, 'categorias': categorias})
